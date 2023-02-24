@@ -1,4 +1,5 @@
-- Database/Prisma
+- Database/[Prisma](https://docs.nestjs.com/recipes/prisma)
 - EventBridge
-- Lambda with Cloudevents
-- Metrics
+- Lambda
+- [Cloudevents](https://github.com/cloudevents/sdk-javascript)
+- [Healthchecks](https://docs.nestjs.com/recipes/terminus)
