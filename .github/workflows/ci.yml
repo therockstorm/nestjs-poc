@@ -29,7 +29,6 @@ jobs:
       - if: steps.cache-npm.outputs.cache-hit != 'true'
         run: npm ci
   build:
-    if: github.event_name == 'pull_request'
     needs: [cache-npm]
     runs-on: ubuntu-latest
     steps:
@@ -49,25 +48,25 @@ jobs:
           path: "**/node_modules"
       - run: npm ci
       - run: npm run lint
-  # deploy:
-  #   if: github.event_name != 'pull_request'
-  #   needs: [build]
-  #   permissions:
-  #     contents: read
-  #     id-token: write
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: aws-actions/configure-aws-credentials@v1-node16
-  #       with:
-  #         aws-region: us-west-2
-  #         role-to-assume: TODO
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with: { cache: npm, node-version-file: .tool-versions }
-  #     - uses: actions/cache@v3
-  #       id: cache-npm
-  #       with:
-  #         key: ${{ runner.os }}-cache-npm-v1-${{ hashFiles('**/package-lock.lock') }}
-  #         path: "**/node_modules"
-  #     - run: npm ci
-  #     - run: TODO
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: [build]
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-region: us-west-2
+          role-to-assume: arn:aws:iam::673013582138:role/SecurityStack-CustomAWSCDKOpenIdConnectProviderCus-122TC6X3SESV0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { cache: npm, node-version-file: .tool-versions }
+      - uses: actions/cache@v3
+        id: cache-npm
+        with:
+          key: ${{ runner.os }}-cache-npm-v1-${{ hashFiles('**/package-lock.lock') }}
+          path: "**/node_modules"
+      - run: npm ci
+      - run: npm run --workspace deploy cdk -- deploy --all --concurrency 5 --require-approval never
