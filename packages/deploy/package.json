@@ -22,6 +22,6 @@
     "build": "tsc",
     "cdk": "cdk",
     "test": "jest",
-    "watch": "tsc -w"
+    "watch": "tsc --watch"
   }
 }

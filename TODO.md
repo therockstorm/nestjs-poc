@@ -1,1 +1,4 @@
-- OpenAPI
+- Database/Prisma
+- EventBridge
+- Lambda with Cloudevents
+- Metrics
