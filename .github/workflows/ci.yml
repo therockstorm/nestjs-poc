@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push: { branches: [main] }
+  pull_request:
+
+env:
+  CI: true
+
+jobs:
+  cache-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event_name == 'pull_request'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+      - if: github.event_name != 'pull_request'
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { cache: npm, node-version-file: .tool-versions }
+      - uses: actions/cache@v3
+        id: cache-npm
+        with:
+          key: ${{ runner.os }}-cache-npm-v1-${{ hashFiles('**/package-lock.json') }}
+          path: "**/node_modules"
+          restore-keys: ${{ runner.os }}-cache-npm-v1-
+      - if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: npm ci
+  build:
+    if: github.event_name == 'pull_request'
+    needs: [cache-npm]
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event_name == 'pull_request'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+      - if: github.event_name != 'pull_request'
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { cache: npm, node-version-file: .tool-versions }
+      - uses: actions/cache@v3
+        id: cache-npm
+        with:
+          key: ${{ runner.os }}-cache-npm-v1-${{ hashFiles('**/package-lock.lock') }}
+          path: "**/node_modules"
+      - run: npm ci
+      - run: npm run lint
+  # deploy:
+  #   if: github.event_name != 'pull_request'
+  #   needs: [build]
+  #   permissions:
+  #     contents: read
+  #     id-token: write
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: aws-actions/configure-aws-credentials@v1-node16
+  #       with:
+  #         aws-region: us-west-2
+  #         role-to-assume: TODO
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with: { cache: npm, node-version-file: .tool-versions }
+  #     - uses: actions/cache@v3
+  #       id: cache-npm
+  #       with:
+  #         key: ${{ runner.os }}-cache-npm-v1-${{ hashFiles('**/package-lock.lock') }}
+  #         path: "**/node_modules"
+  #     - run: npm ci
+  #     - run: TODO

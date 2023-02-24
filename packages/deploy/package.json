@@ -20,7 +20,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
-    "test": "jest"
+    "cdk": "cdk",
+    "test": "jest",
+    "watch": "tsc -w"
   }
 }

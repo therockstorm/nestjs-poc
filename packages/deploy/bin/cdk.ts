@@ -3,12 +3,17 @@ import "source-map-support/register";
 
 import * as cdk from "aws-cdk-lib";
 
-import { NestJsPocStack } from "../lib/stack";
+import { ENV } from "../src/lib/constants";
+import { resourceId } from "../src/lib/resource-id";
+import { NestJsPocStack } from "../src/NestJsPocStack";
+import { SecurityStack } from "../src/SecurityStack";
 
 const app = new cdk.App();
-new NestJsPocStack(app, "NestJsPocStack", {
-  env: {
-    account: process.env.CDK_DEFAULT_ACCOUNT,
-    region: process.env.CDK_DEFAULT_REGION,
-  },
-});
+const props = { env: ENV };
+
+new SecurityStack(app, stack(SecurityStack.project), props);
+new NestJsPocStack(app, stack(NestJsPocStack.project), props);
+
+function stack(name: string) {
+  return resourceId({ name, resource: "stack" });
+}
