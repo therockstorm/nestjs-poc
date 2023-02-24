@@ -5,7 +5,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:typescript-sort-keys/recommended",
   ],
-  ignorePatterns: [".eslintrc.js"],
+  ignorePatterns: [".eslintrc.js", "dist"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "tsconfig.json",
