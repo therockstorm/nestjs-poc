@@ -19,14 +19,11 @@ This project uses:
 # Install dependencies
 npm install
 
-# Run development server
-npm run start
+# Start the database and API, available at http://localhost:3000
+docker-compose up
 
-# Run development server with watch mode
-npm run start:dev
-
-# Run production server
-npm run start:prod
+# Once the database in the above step logs "database system is ready to accept connections", migrate the database and seed it with data
+npx prisma migrate dev && npx prisma db seed
 
 # Run unit tests
 npm run test

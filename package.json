@@ -19,6 +19,7 @@
   },
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "up": "cp package-lock.json ./packages/service && docker-compose up"
   }
 }

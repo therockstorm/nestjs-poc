@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["apprunner", "nestjs", "therockstorm"]
+  "cSpell.words": [
+    "apprunner",
+    "autoincrement",
+    "datasource",
+    "nestjs",
+    "therockstorm"
+  ]
 }

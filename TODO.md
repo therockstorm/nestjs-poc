@@ -1,5 +1,12 @@
-- Database/[Prisma](https://docs.nestjs.com/recipes/prisma)
 - EventBridge
 - Lambda
 - [Cloudevents](https://github.com/cloudevents/sdk-javascript)
 - [Healthchecks](https://docs.nestjs.com/recipes/terminus)
+- [Validation](https://docs.nestjs.com/techniques/validation)/error handling
+- Modules
+- Guards
+- Integration tests
+- OpenAPI decorators
+- CDK DB
+- GitHub merge queue
+- Monorepo with NX?
