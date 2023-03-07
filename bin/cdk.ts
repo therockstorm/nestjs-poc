@@ -18,7 +18,7 @@ const pipeline = new GitHubWorkflow(
   {
     awsCreds: AwsCredentials.fromOpenIdConnect({
       gitHubActionRoleArn:
-        "arn:aws:iam::673013582138:role/SecurityStack-GitHubRoleECD51173-10013MCDEI87A",
+        "arn:aws:iam::673013582138:role/Dev-SecurityStack-GitHubRoleECD51173-190F3KKBIE0RY",
     }),
     synth: new ShellStep("Build", {
       commands: ["npm ci", "npm run cdk -- synth"],

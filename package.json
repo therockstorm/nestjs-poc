@@ -43,6 +43,7 @@
     "rules": {
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-extraneous-class": "off",
+      "capitalized-comments": "off",
       "jest/expect-expect": "off",
       "import/extensions": "off",
       "import/order": "off",
@@ -108,7 +109,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",

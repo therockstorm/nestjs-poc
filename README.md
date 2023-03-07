@@ -39,4 +39,7 @@ npm run cdk -- bootstrap
 
 # Synth
 npm run cdk -- synth
+
+# Deploy locally
+npm run cdk -- deploy "**" --concurrency 5 --require-approval never
 ```
