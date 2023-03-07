@@ -7,16 +7,37 @@
   ],
   "xo": {
     "extends": [
+      "plugin:@darraghor/nestjs-typed/recommended",
+      "plugin:jest/recommended",
       "plugin:typescript-sort-keys/recommended"
     ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
     "plugins": [
+      "@darraghor/nestjs-typed",
+      "jest",
       "simple-import-sort",
       "typescript-sort-keys"
     ],
     "prettier": true,
     "rules": {
+      "@darraghor/nestjs-typed/injectable-should-be-provided": [
+        "error",
+        {
+          "src": [
+            "packages/service/**/*.ts"
+          ],
+          "filterFromPaths": [
+            "node_modules",
+            ".test.",
+            ".spec."
+          ]
+        }
+      ],
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-extraneous-class": "off",
+      "jest/expect-expect": "off",
       "import/extensions": "off",
       "import/order": "off",
       "new-cap": "off",
@@ -28,8 +49,10 @@
     "space": true
   },
   "devDependencies": {
+    "@darraghor/eslint-plugin-nestjs-typed": "3.19.0",
     "@typescript-eslint/eslint-plugin": "5.54.1",
     "@typescript-eslint/parser": "5.54.1",
+    "eslint-plugin-jest": "27.2.1",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-typescript-sort-keys": "2.1.0",
     "prettier": "2.8.4",

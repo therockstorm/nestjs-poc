@@ -1,6 +1,9 @@
 *.js
+*.js.map
 !jest.config.js
 *.d.ts
+tsconfig.tsbuildinfo
 
 .cdk.staging
 cdk.out
+dist

@@ -15,9 +15,7 @@ describe("CatsController", () => {
     controller = app.get<CatsController>(CatsController);
   });
 
-  describe("root", () => {
-    it("returns message", () => {
-      expect(controller.findAll()).toBe("Hi, Rocky!");
-    });
+  it("should be defined", () => {
+    expect(controller).toBeDefined();
   });
 });

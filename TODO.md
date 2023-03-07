@@ -1,3 +1,6 @@
+- CDK nag
+- Separate stateless and stateful stacks
+- Document/ADR
 - EventBridge
 - Lambda
 - [Cloudevents](https://github.com/cloudevents/sdk-javascript)
@@ -10,3 +13,4 @@
 - CDK DB
 - GitHub merge queue
 - Monorepo with NX?
+- Feature flags
