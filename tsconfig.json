@@ -14,6 +14,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": true,
+    "outDir": "dist",
     "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": true,

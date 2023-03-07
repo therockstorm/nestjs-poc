@@ -17,10 +17,10 @@ export class NestJsPocStack extends Stack {
       source: apprunner.Source.fromGitHub({
         branch: "main",
         codeConfigurationValues: {
-          buildCommand: "npm install && npm run --workspace service build",
+          buildCommand: "npm install && npm run build",
           port: "3000",
           runtime: apprunner.Runtime.NODEJS_16,
-          startCommand: "npm run --workspace service start:prod",
+          startCommand: "npm run start:prod",
         },
         configurationSource: apprunner.ConfigurationSourceType.API,
         connection: apprunner.GitHubConnection.fromConnectionArn(

@@ -14,4 +14,4 @@ RUN npx prisma generate
 
 ENV DATABASE_URL=postgresql://postgres:postgres@db:5432/db
 
-CMD ["npm", "run", "start:dev", "--workspace", "service"]
+CMD ["npm", "run", "start:dev"]

@@ -33,4 +33,10 @@ npm run test:e2e
 
 # Run test coverage
 npm run test:cov
+
+# Bootstrap CDK after updating dependencies
+npm run cdk -- bootstrap
+
+# Synth
+npm run cdk -- synth
 ```

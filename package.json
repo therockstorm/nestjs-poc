@@ -2,9 +2,28 @@
   "name": "nestjs-poc",
   "version": "0.0.1",
   "private": true,
-  "workspaces": [
-    "./packages/*"
-  ],
+  "eslintConfig": {},
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testEnvironment": "node",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    }
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma",
+    "seed": "ts-node ./src/prisma/seed.ts"
+  },
   "xo": {
     "extends": [
       "plugin:@darraghor/nestjs-typed/recommended",
@@ -22,19 +41,6 @@
     ],
     "prettier": true,
     "rules": {
-      "@darraghor/nestjs-typed/injectable-should-be-provided": [
-        "error",
-        {
-          "src": [
-            "packages/service/**/*.ts"
-          ],
-          "filterFromPaths": [
-            "node_modules",
-            ".test.",
-            ".spec."
-          ]
-        }
-      ],
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-extraneous-class": "off",
       "jest/expect-expect": "off",
@@ -49,20 +55,65 @@
     "space": true
   },
   "devDependencies": {
+    "@aws-cdk/aws-apprunner-alpha": "2.66.1-alpha.0",
     "@darraghor/eslint-plugin-nestjs-typed": "3.19.0",
+    "@nestjs/cli": "9.2.0",
+    "@nestjs/schematics": "9.0.4",
+    "@nestjs/swagger": "6.2.1",
+    "@nestjs/testing": "9.3.9",
+    "@types/express": "4.17.17",
+    "@types/jest": "29.4.0",
+    "@types/node": "18.14.1",
+    "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.54.1",
     "@typescript-eslint/parser": "5.54.1",
+    "aws-cdk": "2.66.1",
+    "aws-cdk-lib": "2.66.1",
+    "camel-case": "4.1.2",
+    "cdk-pipelines-github": "0.3.145",
+    "constructs": "10.1.259",
+    "eslint": "8.34.0",
+    "eslint-config-prettier": "8.6.0",
     "eslint-plugin-jest": "27.2.1",
+    "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-typescript-sort-keys": "2.1.0",
+    "jest": "29.4.3",
     "prettier": "2.8.4",
+    "prisma": "4.10.1",
+    "source-map-support": "0.5.21",
+    "supertest": "6.3.3",
+    "ts-jest": "29.0.5",
+    "ts-loader": "9.4.2",
     "ts-node": "10.9.1",
+    "tsconfig-paths": "4.1.2",
     "typescript": "4.9.5",
+    "upper-case-first": "2.0.2",
     "xo": "0.53.1"
   },
+  "dependencies": {
+    "@nestjs/common": "9.3.9",
+    "@nestjs/core": "9.3.9",
+    "@nestjs/platform-express": "9.3.9",
+    "@prisma/client": "4.10.1",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.8.0"
+  },
   "scripts": {
+    "build": "nest build",
+    "cdk": "cdk",
+    "clean": "rm -rf dist cdk.out",
     "format": "prettier --write .",
     "lint": "xo",
-    "up": "cp package-lock.json ./packages/service && docker-compose up"
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "up": "docker-compose up"
   }
 }

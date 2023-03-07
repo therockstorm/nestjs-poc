@@ -9,7 +9,7 @@ services:
     image: postgres:14-alpine
     ports:
       - 5432:5432
-    volumes: ["./packages/service/src/prisma/data/db:/var/lib/postgresql/data"]
+    volumes: ["./src/prisma/data/db:/var/lib/postgresql/data"]
   app:
     build: .
     depends_on: [db]
