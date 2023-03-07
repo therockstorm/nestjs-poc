@@ -23,7 +23,6 @@ const pipeline = new GitHubWorkflow(
     synth: new ShellStep("Build", {
       commands: ["npm ci", "npm run cdk -- synth"],
     }),
-    workflowPath: "../../.github/workflows/deploy.yml",
   }
 );
 
