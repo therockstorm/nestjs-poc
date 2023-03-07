@@ -1,4 +1,4 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { Test, type TestingModule } from "@nestjs/testing";
 
 import { CatsController } from "./cats.controller";
 import { CatsService } from "./cats.service";
@@ -17,7 +17,7 @@ describe("CatsController", () => {
 
   describe("root", () => {
     it("returns message", () => {
-      expect(controller.getHello()).toBe("Hi, Rocky!");
+      expect(controller.findAll()).toBe("Hi, Rocky!");
     });
   });
 });

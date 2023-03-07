@@ -21,9 +21,10 @@ async function main() {
 }
 
 main()
-  .then(() => prisma.$disconnect())
-  .catch(async (e) => {
-    console.error(e);
+  .then(async () => prisma.$disconnect())
+  // eslint-disable-next-line unicorn/prefer-top-level-await
+  .catch(async (error) => {
+    console.error(error);
     await prisma.$disconnect();
-    process.exit(1);
+    throw new Error("Failed to seed database.");
   });

@@ -1,7 +1,7 @@
 import { camelCase } from "camel-case";
 import { upperCaseFirst } from "upper-case-first";
 
-export type ResourceIdReq = Readonly<{
+export type ResourceIdRequest = Readonly<{
   /**
    * A friendly camelCase name to distinguish from others of the same resource
    * type. Doesn't have to be unique unless AWS requires it.
@@ -14,10 +14,10 @@ export type ResourceIdReq = Readonly<{
   resource: string;
 }>;
 
-export function resourceId({ name, resource }: ResourceIdReq): string {
+export function resourceId({ name, resource }: ResourceIdRequest): string {
   return upperCamelCase(`${name}${upperCamelCase(resource)}`);
 }
 
-function upperCamelCase(str: string): string {
-  return upperCaseFirst(camelCase(str));
+function upperCamelCase(value: string): string {
+  return upperCaseFirst(camelCase(value));
 }

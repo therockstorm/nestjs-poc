@@ -1,5 +1,5 @@
 import { thrw } from "./thrw";
 
-export function required<T>(name: string, val?: T): T | never {
-  return val || thrw(`${name} required`);
+export function required<T>(name: string, value?: T): T | never {
+  return value ?? thrw(`${name} required`);
 }

@@ -1,7 +1,7 @@
 import * as apprunner from "@aws-cdk/aws-apprunner-alpha";
 
 import { resourceId } from "../lib/resource-id";
-import { BaseProps } from "./BaseProps";
+import type { BaseProps } from "./base-props";
 
 export class AppRunnerService extends apprunner.Service {
   constructor({

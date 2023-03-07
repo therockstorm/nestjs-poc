@@ -1,11 +1,13 @@
 import * as apprunner from "@aws-cdk/aws-apprunner-alpha";
-import { Stack, StackProps } from "aws-cdk-lib";
-import { Construct } from "constructs";
+import { Stack, type StackProps } from "aws-cdk-lib";
+import type { Construct } from "constructs";
 
-import { AppRunnerService } from "./constructs/AppRunnerService";
+import { AppRunnerService } from "./constructs/app-runner-service";
 
 export class NestJsPocStack extends Stack {
-  public static readonly project = "nestJsPoc";
+  public static get project() {
+    return "nestJsPoc";
+  }
 
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);

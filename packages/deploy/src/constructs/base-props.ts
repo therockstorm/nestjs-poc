@@ -1,4 +1,4 @@
-import { Construct } from "constructs";
+import type { Construct } from "constructs";
 
 export type BaseProps<ScopeT = Construct, NameT = string> = Readonly<{
   ctx: Readonly<{

@@ -5,21 +5,41 @@
   "workspaces": [
     "./packages/*"
   ],
+  "xo": {
+    "extends": [
+      "plugin:typescript-sort-keys/recommended"
+    ],
+    "plugins": [
+      "simple-import-sort",
+      "typescript-sort-keys"
+    ],
+    "prettier": true,
+    "rules": {
+      "@typescript-eslint/naming-convention": "off",
+      "@typescript-eslint/no-extraneous-class": "off",
+      "import/extensions": "off",
+      "import/order": "off",
+      "new-cap": "off",
+      "no-await-in-loop": "warn",
+      "no-new": "off",
+      "simple-import-sort/imports": "warn",
+      "sort-keys": "warn"
+    },
+    "space": true
+  },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.53.0",
-    "@typescript-eslint/parser": "5.53.0",
-    "eslint": "8.34.0",
-    "eslint-config-prettier": "8.6.0",
-    "eslint-plugin-prettier": "4.2.1",
+    "@typescript-eslint/eslint-plugin": "5.54.1",
+    "@typescript-eslint/parser": "5.54.1",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-typescript-sort-keys": "2.1.0",
     "prettier": "2.8.4",
     "ts-node": "10.9.1",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "xo": "0.53.1"
   },
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint . --fix",
+    "lint": "xo",
     "up": "cp package-lock.json ./packages/service && docker-compose up"
   }
 }

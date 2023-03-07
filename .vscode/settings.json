@@ -4,6 +4,7 @@
     "autoincrement",
     "datasource",
     "nestjs",
-    "therockstorm"
+    "therockstorm",
+    "thrw"
   ]
 }

@@ -1,8 +1,8 @@
 import { aws_iam as iam } from "aws-cdk-lib";
 
-import { BaseProps } from "./BaseProps";
-import { OpenIdConnectProvider } from "./OpenIdConnectProvider";
-import { Role } from "./Role";
+import type { BaseProps } from "./base-props";
+import { OpenIdConnectProvider } from "./openid-connect-provider";
+import { Role } from "./role";
 
 export type CtorProps = BaseProps &
   Readonly<{ isDev: boolean; organization: string; repository: string }>;
@@ -20,7 +20,7 @@ export class GitHubProvider {
     });
 
     const condUrl = url.replace("https://", "");
-    const condSubKey = [`${condUrl}:sub`];
+    const condSubKey = `${condUrl}:sub`;
     new Role({
       // See https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#configuring-the-role-and-trust-policy
       assumedBy: new iam.OpenIdConnectPrincipal(provider).withConditions(

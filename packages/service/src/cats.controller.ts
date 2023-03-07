@@ -1,29 +1,37 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from "@nestjs/common";
 
 import { CatsService } from "./cats.service";
 import { CreateCatDto } from "./dto";
 
 @Controller("cats")
 export class CatsController {
-  constructor(private catsService: CatsService) {}
+  constructor(private readonly catsService: CatsService) {}
 
   @Post()
-  create(@Body() createCatDto: CreateCatDto) {
+  async create(@Body() createCatDto: CreateCatDto) {
     return this.catsService.create(createCatDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.catsService.findAll();
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string) {
-    return `This action returns a #${id} cat`;
+  async findOne(@Param("id", ParseIntPipe) id: number) {
+    return this.catsService.findOne(id);
   }
 
   @Delete(":id")
-  remove(@Param("id") id: string) {
-    return `This action removes a #${id} cat`;
+  async remove(@Param("id", ParseIntPipe) id: number) {
+    return this.catsService.delete(id);
   }
 }
