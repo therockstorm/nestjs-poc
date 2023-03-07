@@ -21,7 +21,11 @@ const pipeline = new GitHubWorkflow(
         "arn:aws:iam::673013582138:role/SecurityStack-GitHubRoleECD51173-10013MCDEI87A",
     }),
     synth: new ShellStep("Build", {
-      commands: ["npm ci", "npm run lint"],
+      commands: [
+        "npm ci",
+        "npm run lint",
+        "npm run --workspace deploy cdk -- synth",
+      ],
     }),
     workflowPath: "../../.github/workflows/deploy.yml",
   }

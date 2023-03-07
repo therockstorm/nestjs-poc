@@ -23,6 +23,7 @@ jobs:
         run: |-
           npm ci
           npm run lint
+          npm run --workspace deploy cdk -- synth
       - name: Upload cdk.out
         uses: actions/upload-artifact@v3
         with:

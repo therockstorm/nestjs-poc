@@ -14,6 +14,6 @@ Deploy service using AWS App Runner.
 # Bootstrap CDK after updating dependencies
 npm run --workspace deploy cdk -- bootstrap
 
-# Deploy
-npm run --workspace deploy cdk -- deploy --all
+# Synth
+npm run --workspace deploy cdk -- synth
 ```
