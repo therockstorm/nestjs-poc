@@ -21,9 +21,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Build
         run: |-
+          cd packages/deploy
           npm ci
-          npm run lint
-          npm run --workspace deploy cdk -- synth
+          npm run cdk -- synth
       - name: Upload cdk.out
         uses: actions/upload-artifact@v3
         with:
@@ -145,7 +145,8 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1.1.0
         with:
           name: Dev-NestJsPocStack
-          template: https://cdk-hnb659fds-assets-673013582138-us-west-2.s3.us-west-2.amazonaws.com/${{
+          template:
+            https://cdk-hnb659fds-assets-673013582138-us-west-2.s3.us-west-2.amazonaws.com/${{
             needs.Assets-FileAsset1.outputs.asset-hash }}.json
           no-fail-on-empty-changeset: "1"
           role-arn: arn:aws:iam::673013582138:role/cdk-hnb659fds-cfn-exec-role-673013582138-us-west-2
@@ -182,7 +183,8 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1.1.0
         with:
           name: Dev-SecurityStack
-          template: https://cdk-hnb659fds-assets-673013582138-us-west-2.s3.us-west-2.amazonaws.com/${{
+          template:
+            https://cdk-hnb659fds-assets-673013582138-us-west-2.s3.us-west-2.amazonaws.com/${{
             needs.Assets-FileAsset2.outputs.asset-hash }}.json
           no-fail-on-empty-changeset: "1"
           role-arn: arn:aws:iam::673013582138:role/cdk-hnb659fds-cfn-exec-role-673013582138-us-west-2

@@ -10,7 +10,7 @@ import { ENV } from "../src/lib/constants";
 import { resourceId } from "../src/lib/resource-id";
 import { NestJsPocStage } from "../src/stage";
 
-const app = new App();
+const app = new App({ analyticsReporting: false });
 
 const pipeline = new GitHubWorkflow(
   app,
@@ -21,18 +21,13 @@ const pipeline = new GitHubWorkflow(
         "arn:aws:iam::673013582138:role/SecurityStack-GitHubRoleECD51173-10013MCDEI87A",
     }),
     synth: new ShellStep("Build", {
-      commands: [
-        "npm ci",
-        "npm run lint",
-        "npm run --workspace deploy cdk -- synth",
-      ],
+      commands: ["cd packages/deploy", "npm ci", "npm run cdk -- synth"],
     }),
     workflowPath: "../../.github/workflows/deploy.yml",
   }
 );
 
 const devStage = new NestJsPocStage(app, "Dev", { env: ENV });
-
 pipeline.addStage(devStage);
 
 app.synth();
