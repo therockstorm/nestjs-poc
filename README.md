@@ -2,6 +2,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+See the following:
+
+1. [Deployment Pipeline Reference Architecture](https://pipelines.devops.aws.dev/)
+1. [Best practices for developing and deploying cloud infrastructure with the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html)
+
 ## Table of Contents
 
 - [Usage](#usage)

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 
-import { App } from "aws-cdk-lib";
+import { App, Aspects } from "aws-cdk-lib";
 // eslint-disable-next-line n/file-extension-in-import
 import { ShellStep } from "aws-cdk-lib/pipelines";
 import { AwsCredentials, GitHubWorkflow } from "cdk-pipelines-github";
@@ -9,8 +9,10 @@ import { AwsCredentials, GitHubWorkflow } from "cdk-pipelines-github";
 import { ENV } from "../src/deploy/lib/constants";
 import { resourceId } from "../src/deploy/lib/resource-id";
 import { NestJsPocStage } from "../src/deploy/stage";
+import { getNagPacks } from "../src/deploy/lib/nag";
 
 const app = new App({ analyticsReporting: false });
+getNagPacks({ verbose: true }).forEach((c) => Aspects.of(app).add(c));
 
 const pipeline = new GitHubWorkflow(
   app,

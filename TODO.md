@@ -1,6 +1,3 @@
-- CDK nag
-- Separate stateless and stateful stacks
-- Document/ADR
 - EventBridge
 - Lambda
 - [Cloudevents](https://github.com/cloudevents/sdk-javascript)
@@ -8,9 +5,11 @@
 - [Validation](https://docs.nestjs.com/techniques/validation)/error handling
 - Modules
 - Guards
-- Integration tests
-- OpenAPI decorators
-- CDK DB
+- Integration tests in CI with test containers
+- CDK DB in stateful stack
+- Progressive blue/green deploys with monitoring
+- ApplicationLoadBalancedCodeDeployedFargateService
 - GitHub merge queue
-- Monorepo with NX?
-- Feature flags
+- Perf tests
+- Document/ADR
+- CDK tests with coverage
