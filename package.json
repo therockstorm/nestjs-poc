@@ -71,6 +71,7 @@
     "aws-cdk": "2.68.0",
     "aws-cdk-lib": "2.68.0",
     "camel-case": "4.1.2",
+    "cdk-nag": "2.22.30",
     "cdk-pipelines-github": "0.3.148",
     "constructs": "10.1.272",
     "eslint": "8.35.0",
