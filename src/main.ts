@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
@@ -15,6 +16,11 @@ async function bootstrap() {
   SwaggerModule.setup("api", app, document);
 
   await app.listen(3000);
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(async () => app.close());
+  }
 }
 
 // eslint-disable-next-line unicorn/prefer-top-level-await
