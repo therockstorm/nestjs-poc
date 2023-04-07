@@ -21,7 +21,19 @@
     "strict": true,
     "strictBindCallApply": true,
     "strictNullChecks": true,
-    "target": "ES2017",
-    "types": ["webpack-env"]
-  }
+    "target": "ES2017"
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.lint.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }

@@ -17,8 +17,8 @@ module.exports = function (options, webpack) {
         paths: [/\.js$/, /\.d\.ts$/],
       }),
       new RunScriptWebpackPlugin({
-        name: options.output.filename,
         autoRestart: false,
+        name: options.output.filename,
       }),
     ],
   };

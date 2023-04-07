@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import "source-map-support/register";
 
 import { App, Aspects } from "aws-cdk-lib";
@@ -7,12 +8,12 @@ import { ShellStep } from "aws-cdk-lib/pipelines";
 import { AwsCredentials, GitHubWorkflow } from "cdk-pipelines-github";
 
 import { ENV } from "../src/deploy/lib/constants";
+import { getNagPacks } from "../src/deploy/lib/nag";
 import { resourceId } from "../src/deploy/lib/resource-id";
 import { NestJsPocStage } from "../src/deploy/stage";
-import { getNagPacks } from "../src/deploy/lib/nag";
 
 const app = new App({ analyticsReporting: false });
-getNagPacks({ verbose: true }).forEach((c) => Aspects.of(app).add(c));
+for (const c of getNagPacks({ verbose: true })) Aspects.of(app).add(c);
 
 const pipeline = new GitHubWorkflow(
   app,

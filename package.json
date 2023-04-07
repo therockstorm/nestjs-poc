@@ -2,27 +2,22 @@
   "name": "nestjs-poc",
   "version": "0.0.1",
   "private": true,
-  "eslintConfig": {},
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testEnvironment": "node",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    }
-  },
-  "prisma": {
-    "schema": "./src/prisma/schema.prisma",
-    "seed": "ts-node ./src/prisma/seed.ts"
+  "scripts": {
+    "build": "nest build",
+    "cdk": "cdk",
+    "clean": "rm -rf dist cdk.out",
+    "format": "prettier --write .",
+    "lint": "xo",
+    "start": "nest start",
+    "start:debug": "nest start --debug --watch",
+    "start:dev": "nest build --webpack --webpackPath webpack-hmr.config.cjs --watch",
+    "start:prod": "node dist/src/main",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:watch": "jest --watch",
+    "up": "docker-compose up"
   },
   "xo": {
     "extends": [
@@ -31,7 +26,7 @@
       "plugin:typescript-sort-keys/recommended"
     ],
     "parserOptions": {
-      "project": "./tsconfig.json"
+      "project": "./tsconfig.lint.json"
     },
     "plugins": [
       "@darraghor/nestjs-typed",
@@ -55,8 +50,38 @@
     },
     "space": true
   },
+  "eslintConfig": {},
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testEnvironment": "node",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": [
+        "ts-jest",
+        {
+          "tsconfig": "<rootDir>/../tsconfig.spec.json"
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "9.3.9",
+    "@nestjs/core": "9.3.9",
+    "@nestjs/platform-express": "9.3.9",
+    "@prisma/client": "4.11.0",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.8.0"
+  },
   "devDependencies": {
-    "@aws-cdk/aws-apprunner-alpha": "2.68.0-alpha.0",
     "@darraghor/eslint-plugin-nestjs-typed": "3.19.0",
     "@nestjs/cli": "9.2.0",
     "@nestjs/schematics": "9.0.4",
@@ -86,6 +111,7 @@
     "prettier": "2.8.4",
     "prisma": "4.11.0",
     "run-script-webpack-plugin": "0.1.1",
+    "sort-package-json": "2.4.1",
     "source-map-support": "0.5.21",
     "supertest": "6.3.3",
     "ts-jest": "29.0.5",
@@ -98,29 +124,8 @@
     "webpack-node-externals": "3.0.0",
     "xo": "0.53.1"
   },
-  "dependencies": {
-    "@nestjs/common": "9.3.9",
-    "@nestjs/core": "9.3.9",
-    "@nestjs/platform-express": "9.3.9",
-    "@prisma/client": "4.11.0",
-    "reflect-metadata": "0.1.13",
-    "rxjs": "7.8.0"
-  },
-  "scripts": {
-    "build": "nest build",
-    "cdk": "cdk",
-    "clean": "rm -rf dist cdk.out",
-    "format": "prettier --write .",
-    "lint": "xo",
-    "start": "nest start",
-    "start:dev": "nest build --webpack --webpackPath webpack-hmr.config.cjs --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/src/main",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "up": "docker-compose up"
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma",
+    "seed": "ts-node ./src/prisma/seed.ts"
   }
 }

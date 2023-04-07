@@ -1,10 +1,10 @@
-import { IAspect } from "aws-cdk-lib";
+import type { IAspect } from "aws-cdk-lib";
 import { AwsSolutionsChecks } from "cdk-nag";
 
-type GetNagPacksReq = Readonly<{
+type GetNagPacksRequest = Readonly<{
   verbose: boolean;
 }>;
 
-export function getNagPacks({ verbose }: GetNagPacksReq): IAspect[] {
+export function getNagPacks({ verbose }: GetNagPacksRequest): IAspect[] {
   return [new AwsSolutionsChecks({ verbose })];
 }
